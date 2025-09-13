@@ -20,14 +20,13 @@ public class DataInitializer {
     CommandLineRunner initDatabase(UserRepository userRepo,
                                    CategoryRepository categoryRepo,
                                    VideoRepository videoRepo) {
-        return args -> {
+        return _ -> {
             
-            userRepo.save(new User(1L,"admin","admin123"));
+            userRepo.save(new User(null,"admin","admin123"));
             
-            categoryRepo.save(new)
+            categoryRepo.save(new Category(null,"Thể Loại Game","Trò chơi trên máy tính",""));
             
-            
-            
+            videoRepo.save(new Video(null,"LOL","Ko có mô tả","https://www.youtube.com/watch?v=FIRDEENjvoU"));
             
         };
     }

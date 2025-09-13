@@ -7,7 +7,6 @@ import lombok.*;
 @Table(name = "videos")
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Video {
