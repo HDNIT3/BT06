@@ -26,6 +26,7 @@
     <div class="login-container">
         <h2 class="text-center mb-4">Thêm Category</h2>
         <form method="post" action="/admin/category/add">
+        	<input type="hidden" id="id" name="id" required>
             <div class="mb-3">
                 <label for="username" class="form-label">Tên Category</label>
                 <input type="text" class="form-control" id="category" name="category" required>

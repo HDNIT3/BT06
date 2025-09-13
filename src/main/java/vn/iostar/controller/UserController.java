@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import vn.iostar.entity.User;
+import vn.iostar.service.CategoryService;
 import vn.iostar.service.UserService;
 
 @Controller
@@ -19,6 +20,9 @@ public class UserController {
 
 	@Autowired
 	private UserService userSer;
+	
+	@Autowired
+	private CategoryService cateSer;
 
 	@GetMapping("/login")
 	public String loginPage(Model model,HttpServletRequest req) {
@@ -43,7 +47,13 @@ public class UserController {
 	}
 
 	@GetMapping("/home")
-	public String homePage(Model model) {
+	public String homePage(Model model, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		User u = (User) session.getAttribute("account");
+		if (u==null) {
+			return "redirect:/admin/login";
+		}
+		model.addAttribute("listcate", cateSer.findByUserid(u.getId()));
 		return "admin/home";
 	}
 
