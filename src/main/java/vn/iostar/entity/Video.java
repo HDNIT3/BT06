@@ -8,7 +8,7 @@ import lombok.*;
 @Getter
 @Setter
 @AllArgsConstructor
-@Builder
+@NoArgsConstructor
 public class Video {
 
     @Id

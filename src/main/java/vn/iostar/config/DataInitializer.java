@@ -1,7 +1,5 @@
 package vn.iostar.config;
 
-import java.util.List;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,7 +20,7 @@ public class DataInitializer {
                                    VideoRepository videoRepo) {
         return _ -> {
             
-            userRepo.save(new User(null,"admin","admin123"));
+            userRepo.save(new User(null,"admin","123"));
             
             categoryRepo.save(new Category(null,"Thể Loại Game","Trò chơi trên máy tính",""));
             
