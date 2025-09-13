@@ -16,10 +16,6 @@ public class Category {
 
     @Column(nullable = false, unique = true, length = 100)
     private String categoryName;
-
-    @Column(length = 255)
-    private String description;
     
-    @Column(length = 255)
-    private String url;
+    private long userid;
 }

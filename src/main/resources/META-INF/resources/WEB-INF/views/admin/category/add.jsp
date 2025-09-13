@@ -5,16 +5,16 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Admin Home</title>
+    <title>Login</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             background-color: #f8f9fa;
         }
-        .home-container {
-            max-width: 800px;
-            margin: 50px auto;
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
             padding: 20px;
             background: white;
             border-radius: 8px;
@@ -23,11 +23,15 @@
     </style>
 </head>
 <body>
-    <div class="home-container">
-        <h1 class="text-center mb-4">Trang Quản Trị</h1>
-        <div class="text-center">
-            <a href="/admin/logout" class="btn btn-secondary">Đăng xuất</a>
-        </div>
+    <div class="login-container">
+        <h2 class="text-center mb-4">Thêm Category</h2>
+        <form method="post" action="/admin/category/add">
+            <div class="mb-3">
+                <label for="username" class="form-label">Tên Category</label>
+                <input type="text" class="form-control" id="category" name="category" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Thêm</button>
+        </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

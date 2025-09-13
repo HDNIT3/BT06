@@ -23,4 +23,6 @@ public class Video {
 
     @Column(name = "url")
     private String url;
+    
+    private Long categoryid;
 }

@@ -30,8 +30,8 @@ public class UserImpl implements UserService{
 		User a = findByUsername(username);
 		if (a==null) {
 			return false;
-		}
-		if (a.getPassword()==password) {
+		}		
+		if (a.getPassword().contains(password)) {
 			return true;
 		}
 		return false;
