@@ -20,8 +20,8 @@ public class DataInitializer {
                                    VideoRepository videoRepo) {
         return _ -> {
             
-            userRepo.save(new User(null,"admin1","123",List.of()));
-            userRepo.save(new User(null,"admin2","123",List.of())); 
+            userRepo.save(new User(null,"admin1","123",1,List.of()));
+            userRepo.save(new User(null,"admin2","123",1,List.of())); 
             
         };
     }

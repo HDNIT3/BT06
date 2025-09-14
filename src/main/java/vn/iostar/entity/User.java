@@ -23,6 +23,8 @@ public class User {
     @Column(nullable = false)
     private String password;
     
+    private int role;
+    
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Category> categories;
 }
