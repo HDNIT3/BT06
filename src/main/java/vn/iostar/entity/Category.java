@@ -1,5 +1,7 @@
 package vn.iostar.entity;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,4 +22,7 @@ public class Category {
     @ManyToOne
     @JoinColumn(name="user_id")
     private User user;
+    
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Video> Video;
 }

@@ -47,11 +47,11 @@ public class UserController {
 	@GetMapping("/home")
 	public String homePage(Model model, HttpServletRequest req) throws JsonProcessingException {
 		HttpSession session = req.getSession();
-		User u = (User) session.getAttribute("account");
-		u = userSer.findByUsername(u.getUsername());
+		User u = (User) session.getAttribute("account");	
 		if (u==null) {
 			return "redirect:/admin/login";
 		}
+		u = userSer.findByUsername(u.getUsername());
 		model.addAttribute("listcate", u.getCategories());
 		session.setAttribute("account", u);
 		return "admin/home";

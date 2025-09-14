@@ -10,7 +10,6 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Video {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,5 +19,7 @@ public class Video {
 
     private String filePath;
    
-    private Long categoryid;
+    @ManyToOne
+    @JoinColumn(name="category_id")
+    private Category category;
 }

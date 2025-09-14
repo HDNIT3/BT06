@@ -1,6 +1,5 @@
 package vn.iostar.config;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.boot.CommandLineRunner;
@@ -21,7 +20,7 @@ public class DataInitializer {
                                    VideoRepository videoRepo) {
         return _ -> {
             
-            userRepo.save(new User(null,"admin1","123",new ArrayList<>()));
+            userRepo.save(new User(null,"admin1","123",List.of()));
             userRepo.save(new User(null,"admin2","123",List.of())); 
             
         };

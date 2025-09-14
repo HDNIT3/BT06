@@ -6,7 +6,6 @@ import vn.iostar.entity.Video;
 
 public interface VideoService {
 
-	List<Video> findByCategoryid(Long id);
 
 	void deleteById(Long id);
 

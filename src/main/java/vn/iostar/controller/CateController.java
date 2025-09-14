@@ -1,6 +1,8 @@
 package vn.iostar.controller;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -34,12 +35,7 @@ public class CateController {
 	@GetMapping("delete")
 	public String delete(@RequestParam("id") Long id,HttpServletRequest req) throws JsonProcessingException  {
 
-		cateSer.deleteById(id);
-//		HttpSession session = req.getSession();
-//		User u = (User) session.getAttribute("account");
-//		
-//		u = userSer.findByUsername(u.getUsername());
-		
+		cateSer.deleteById(id);	
 		
 		return "redirect:/admin/login";
 	}
@@ -52,7 +48,7 @@ public class CateController {
 			return "redirect:/admin/login";
 		}
 		
-		cateSer.save(new Category(null,category,u));
+		cateSer.save(new Category(null,category,u,List.of()));
 		
 		return "redirect:/admin/home";
 	}

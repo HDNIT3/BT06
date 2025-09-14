@@ -92,9 +92,9 @@ h1 {
 					<div class="category-name">${cate.categoryName}</div>
 
 					<div class="category-buttons">
-						<form action="/admin/category/addVideo" method="get">
+						<form action="/admin/video/home" method="get">
 							<input type="hidden" name="id" value="${cate.id}" />
-							<button type="submit" class="btn btn-light btn-sm">Thêm
+							<button type="submit" class="btn btn-light btn-sm">Xem
 								Video</button>
 						</form>
 

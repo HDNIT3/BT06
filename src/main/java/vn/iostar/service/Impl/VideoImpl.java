@@ -29,8 +29,4 @@ public class VideoImpl implements VideoService{
 		videoRes.deleteById(id);
 	}
 	
-	@Override
-	public List<Video> findByCategoryid(Long id) {
-		return videoRes.findByCategoryid(id);
-	}
 }
