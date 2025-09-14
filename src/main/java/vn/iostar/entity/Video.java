@@ -18,11 +18,7 @@ public class Video {
     @Column(nullable = false, length = 200)
     private String title;
 
-    @Column(length = 500)
-    private String description;
-
-    @Column(name = "url")
-    private String url;
-    
+    private String filePath;
+   
     private Long categoryid;
 }

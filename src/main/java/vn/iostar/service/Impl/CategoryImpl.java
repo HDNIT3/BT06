@@ -31,8 +31,13 @@ public class CategoryImpl implements CategoryService{
 	}
 
 	@Override
-	public List<Category> findByUserid(Long userid) {
-		return cateRes.findByUserid(userid);
+	public Category findByName(String name) {
+		return cateRes.findByCategoryName(name);
+	}
+
+	@Override
+	public Category findById(Long id) {
+		return cateRes.findById(id).orElse(null);
 	}
 	
 }

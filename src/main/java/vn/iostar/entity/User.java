@@ -1,5 +1,7 @@
 package vn.iostar.entity;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,4 +22,7 @@ public class User {
 
     @Column(nullable = false)
     private String password;
+    
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Category> categories;
 }

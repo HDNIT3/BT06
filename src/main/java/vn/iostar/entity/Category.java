@@ -17,5 +17,7 @@ public class Category {
     @Column(nullable = false, unique = true, length = 100)
     private String categoryName;
     
-    private long userid;
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
 }

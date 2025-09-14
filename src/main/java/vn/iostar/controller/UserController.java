@@ -8,10 +8,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import vn.iostar.entity.User;
-import vn.iostar.service.CategoryService;
 import vn.iostar.service.UserService;
 
 @Controller
@@ -21,9 +22,6 @@ public class UserController {
 	@Autowired
 	private UserService userSer;
 	
-	@Autowired
-	private CategoryService cateSer;
-
 	@GetMapping("/login")
 	public String loginPage(Model model,HttpServletRequest req) {
 		HttpSession session = req.getSession();
@@ -47,13 +45,15 @@ public class UserController {
 	}
 
 	@GetMapping("/home")
-	public String homePage(Model model, HttpServletRequest req) {
+	public String homePage(Model model, HttpServletRequest req) throws JsonProcessingException {
 		HttpSession session = req.getSession();
 		User u = (User) session.getAttribute("account");
+		u = userSer.findByUsername(u.getUsername());
 		if (u==null) {
 			return "redirect:/admin/login";
 		}
-		model.addAttribute("listcate", cateSer.findByUserid(u.getId()));
+		model.addAttribute("listcate", u.getCategories());
+		session.setAttribute("account", u);
 		return "admin/home";
 	}
 

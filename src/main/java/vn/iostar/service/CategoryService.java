@@ -12,6 +12,8 @@ public interface CategoryService {
 
 	<S extends Category> S save(S entity);
 	
-	List<Category> findByUserid(Long userid);
+	Category findByName(String name);
+
+	Category findById(Long id);
 
 }
