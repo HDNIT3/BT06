@@ -3,6 +3,7 @@ package vn.iostar.service;
 import java.util.List;
 
 import vn.iostar.entity.Category;
+import vn.iostar.entity.User;
 
 public interface CategoryService {
 
@@ -16,4 +17,5 @@ public interface CategoryService {
 
 	Category findById(Long id);
 
+	List<Category> findByCategoryNameContainsCategory(String name,User user);
 }

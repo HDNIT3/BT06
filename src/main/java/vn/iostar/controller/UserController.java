@@ -1,5 +1,7 @@
 package vn.iostar.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +14,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import vn.iostar.entity.Category;
 import vn.iostar.entity.User;
+import vn.iostar.service.CategoryService;
 import vn.iostar.service.UserService;
 
 @Controller
@@ -20,7 +24,10 @@ import vn.iostar.service.UserService;
 public class UserController {
 
 	@Autowired
-	private UserService userSer;
+	UserService userSer;
+	
+	@Autowired
+	CategoryService cateSer;
 	
 	@GetMapping("/login")
 	public String loginPage(Model model,HttpServletRequest req) {
@@ -45,18 +52,30 @@ public class UserController {
 	}
 
 	@GetMapping("/home")
-	public String homePage(Model model, HttpServletRequest req) throws JsonProcessingException {
-		HttpSession session = req.getSession();
-		User u = (User) session.getAttribute("account");	
-		if (u==null) {
-			return "redirect:/admin/login";
-		}
-		u = userSer.findByUsername(u.getUsername());
-		model.addAttribute("listcate", u.getCategories());
-		session.setAttribute("account", u);
-		return "admin/home";
-	}
+	public String homePage(@RequestParam(name = "name", required = false) String name,
+	                       Model model, HttpServletRequest req) throws JsonProcessingException {
+	    HttpSession session = req.getSession();
+	    User u = (User) session.getAttribute("account");	
+	    if (u == null) {
+	        return "redirect:/admin/login";
+	    }
+	    u = userSer.findByUsername(u.getUsername());
+	    if (name == null || name.isEmpty()) { 
+	        model.addAttribute("listcate", u.getCategories());
+	    } else {	
+	        List<Category> listcate = cateSer.findByCategoryNameContainsCategory(name,u);
+	        model.addAttribute("listcate", listcate);
+	    }
 
+	    session.setAttribute("account", u);
+	    return "admin/home";
+	}
+	
+	@PostMapping("/search")
+	public String search(@RequestParam("name") String name) {
+	    return "redirect:/admin/home?name=" + name;
+	}
+	
 	@GetMapping("/logout")
 	public String LoginPage(Model model, HttpServletRequest req) {
 		HttpSession session = req.getSession(false);

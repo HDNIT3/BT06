@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import vn.iostar.entity.Category;
+import vn.iostar.entity.User;
 import vn.iostar.reponsitory.CategoryRepository;
 import vn.iostar.service.CategoryService;
 
@@ -38,6 +39,11 @@ public class CategoryImpl implements CategoryService{
 	@Override
 	public Category findById(Long id) {
 		return cateRes.findById(id).orElse(null);
+	}
+	
+	@Override
+	public List<Category> findByCategoryNameContainsCategory(String name,User user){
+		return cateRes.findByCategoryNameContainingAndUser(name,user);
 	}
 	
 }
